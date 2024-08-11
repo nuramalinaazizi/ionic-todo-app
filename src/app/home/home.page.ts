@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Todo, TodoService } from '../services/todo.service';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +8,25 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor(private todoService: TodoService) { }
+
+  todos: Todo[] = []
+  ngOnInit() {
+    this.loadTodos();
+  }
+
+  ionViewWillEnter() {
+    this.loadTodos();
+  }
+
+
+  loadTodos() {
+    this.todos = this.todoService.getAll();
+  }
+
+  
+
+  
+
 
 }
